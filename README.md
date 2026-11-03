@@ -1,4 +1,4 @@
-# Lumbra Iluminación — Prototipo
+# Radián Iluminación — Prototipo
 
 Prototipo navegable de un catálogo de productos (solo front) para mostrar al cliente.
 
@@ -19,8 +19,10 @@ Prototipo navegable de un catálogo de productos (solo front) para mostrar al cl
 ## Estructura
 
 ```
-index.html    Toda la página (HTML, CSS y JS en un solo archivo)
-vercel.json   Cabeceras de seguridad para el despliegue en Vercel
+index.html        Toda la página (HTML, CSS y JS en un solo archivo)
+radian-logo.svg   Logo completo en vector
+radian-mark.svg   Isotipo (círculo + R), usado también como favicon
+vercel.json       Cabeceras de seguridad para el despliegue en Vercel
 ```
 
 ## Despliegue en Vercel

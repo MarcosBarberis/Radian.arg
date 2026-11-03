@@ -257,10 +257,10 @@ footer .wrap{display:flex; justify-content:space-between; gap:12px; flex-wrap:wr
 
 <div class="demo">
   <div class="wrap">
-    <span>Prototipo con datos de ejemplo</span>
+    <span>Prototipo de tu tienda · productos de ejemplo</span>
     <nav class="seg" aria-label="Vista">
-      <a href="#inicio" id="segShop" aria-current="true">Tienda</a>
-      <a href="#admin" id="segAdmin">Panel CMS</a>
+      <a href="#inicio" id="segShop" aria-current="true">Tu tienda</a>
+      <a href="#admin" id="segAdmin">Tu panel</a>
     </nav>
   </div>
 </div>
@@ -534,21 +534,21 @@ function viewProduct(p){
     <div>${(vid||p.demoVideo)?`<h2>Video del producto</h2>
       <div class="player"><div class="glow"></div><div class="play"><svg width="22" height="22" viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z" fill="#fff"/></svg></div>
       <div class="cap"><span>${esc(p.name)}</span>${vid?`<a href="https://www.youtube.com/watch?v=${vid}" target="_blank" rel="noopener">Abrir en YouTube ↗</a>`:'<span>Video de ejemplo</span>'}</div></div>
-      <p class="vnote">${vid?'En la página publicada este video se reproduce acá mismo, embebido desde YouTube. En este prototipo se abre en una pestaña nueva.':'Pegá un link de YouTube desde el Panel CMS para ver cómo queda con un video real.'}</p>`:`<h2>Video del producto</h2><p class="vnote">Este producto todavía no tiene video. Se agrega pegando el link de YouTube desde el panel.</p>`}</div>
+      <p class="vnote">${vid?'En tu página publicada, el video se reproduce acá mismo, dentro de la ficha del producto. En este prototipo se abre en una pestaña nueva.':'Este es un video de ejemplo. Pegá el link de uno de tus videos de YouTube desde tu panel para ver cómo queda.'}</p>`:`<h2>Video del producto</h2><p class="vnote">Este producto todavía no tiene video. Podés agregarlo pegando el link de YouTube desde tu panel.</p>`}</div>
   </div>
   ${rel.length?`<section class="sec"><div class="sec-h"><h2>También te puede interesar</h2></div><div class="grid">${rel.map(card).join('')}</div></section>`:''}`;
   document.querySelectorAll('.thumbs button').forEach(b=>b.onclick=()=>{
     document.querySelectorAll('.thumbs button').forEach(x=>x.classList.toggle('on',x===b));
     $('#gmain').innerHTML=thumb(p,+b.dataset.i);
   });
-  $('#wa').onclick=()=>toast(`En el sitio real abre WhatsApp con el mensaje: “Hola, quiero consultar por ${p.name}”.`);
+  $('#wa').onclick=()=>toast(`En tu página real, este botón abre tu WhatsApp con el mensaje: “Hola, quiero consultar por ${p.name}”.`);
 }
 
 /* ---------- CMS demo ---------- */
 function viewAdmin(){
   $('#app').innerHTML=`
   <div class="cms-intro"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:1px" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
-  <p><b>Así vería tu cliente el panel de administración.</b> Editá un producto o creá uno nuevo y tocá “Publicar”: el cambio aparece al instante en la Tienda de este prototipo. En el sitio real se publica en 1–2 minutos. Los cambios de esta demo se borran al recargar la página.</p></div>
+  <p><b>Este es tu panel de administración.</b> Desde acá cargás y editás tus productos: elegí uno de la lista o creá uno nuevo, completá los datos y tocá “Publicar”. En este prototipo el cambio aparece al instante en tu tienda; en tu página real se publica en 1–2 minutos. Los cambios que hagas en esta prueba se borran al recargar la página.</p></div>
   <div class="cms">
     <div class="panel">
       <div class="panel-h"><h2>Productos <span class="count num" style="font-weight:500;color:var(--muted);font-size:14px">(${products.length})</span></h2>
@@ -572,7 +572,7 @@ function renderForm(){
   const fp=$('#formPanel');
   if(!editing){fp.innerHTML=`<div class="panel-h"><h2>Editar producto</h2></div><div class="empty-state" style="margin:16px;border-radius:10px"><b>Elegí un producto de la lista</b>o tocá “Nuevo producto” para cargar uno desde cero.</div>`;return;}
   const e=editing;
-  fp.innerHTML=`<div class="panel-h"><h2>${e.id?'Editar producto':'Nuevo producto'}</h2>${e.id?`<a class="rowbtn" href="#p-${e.id}">Ver en la tienda ↗</a>`:''}</div>
+  fp.innerHTML=`<div class="panel-h"><h2>${e.id?'Editar producto':'Nuevo producto'}</h2>${e.id?`<a class="rowbtn" href="#p-${e.id}">Ver en tu tienda ↗</a>`:''}</div>
   <form class="edit" id="ef" novalidate>
     <div class="field"><label for="f-name">Nombre</label><input id="f-name" required value="${esc(e.name)}" placeholder="Ej: Lámpara LED 9W E27"></div>
     <div class="row2">
@@ -635,7 +635,7 @@ function renderForm(){
     if(e.id){ const i=products.findIndex(x=>x.id===e.id); products[i]={...products[i],...e}; }
     else { e.id=nextId++; e.lm=e.lm||0; e.demoVideo=false; products.unshift({...e}); }
     editing=JSON.parse(JSON.stringify(products.find(x=>x.id===e.id)));
-    toast('Publicado. Ya se ve en la tienda.');
+    toast('Publicado. Ya se ve en tu tienda.');
     viewAdmin();
   };
 }
